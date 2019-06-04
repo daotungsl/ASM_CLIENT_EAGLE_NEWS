@@ -34,6 +34,7 @@ export class ListNewsComponent implements OnInit {
 
     //Tự động gọi lên api khi mở web
   ngOnInit() {
+    
    this.getAllData();
   }
 

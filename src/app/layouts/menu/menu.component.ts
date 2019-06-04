@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {routes} from '../../app-routing.module';
 import { NewsService } from '../../service/news.service';
 
-
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -11,7 +10,8 @@ import { NewsService } from '../../service/news.service';
 export class MenuComponent implements OnInit {
   routes = Object.values(routes);
   listCategory = [];
-
+  gutter = 16;
+count =  0;
   mode = false;
   dark = false;
   menus = [
@@ -54,7 +54,8 @@ export class MenuComponent implements OnInit {
   this.newService.getAllCategory()
   .then(data => {
     this.listCategory = data.data;
-    console.log(data.data)
+    this.count = this.listCategory.length;
+    console.log(data.data);
   })
   .catch(err => console.log(err));
   

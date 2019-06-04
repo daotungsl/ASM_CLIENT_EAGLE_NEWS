@@ -29,4 +29,5 @@ export class NewsService{
         .then(resJson => resJson);
     }
 
+
 }
