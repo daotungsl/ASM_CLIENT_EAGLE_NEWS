@@ -1,6 +1,6 @@
 <div nz-row class="top-news" *ngIf="loadingMore">
   <div nz-col nzSpan="16">
-    <app-top-list-news >
+    <app-top-list-news>
       <a class="card-title" routerLink="/news/detail/">
         <h2>{{topData.title}}</h2>
       </a>
@@ -20,15 +20,15 @@
           <p class="card-description">{{ data.description }}</p>
           <span class="card-author">{{ data.category_name }}</span>
         </app-detail-list-news>
-  
+
         <!-- <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(data.content)"></div> -->
       </ng-container>
     </app-top-sub-list-news>
   </div>
 </div>
+
 <div nz-row>
   <div nz-col nzSpan="14">
-
 
     <ng-container *ngFor="let data of middleData">
       <app-detail-list-news>

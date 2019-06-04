@@ -10,19 +10,11 @@ export const routes = {
         path: 'news',
         children: [
             {
-                path: 'the-thao',
+                path: ':url',
                 component: ListNewsComponent,
                 data: {
-                    name: 'Thể Thao',
-                    display: true
-                }
-            },
-            {
-                path: 'the-gioi',
-                component: ListNewsComponent,
-                data: {
-                    name: 'Thế Giới',
-                    display: true
+                    name: ' ',
+                    display: false
                 }
             },
             {

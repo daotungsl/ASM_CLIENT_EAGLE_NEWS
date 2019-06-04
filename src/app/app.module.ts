@@ -19,6 +19,7 @@ import en from '@angular/common/locales/en';
 import { NewsService } from './service/news.service';
 
 
+
 registerLocaleData(vi);
 
 @NgModule({
