@@ -1,3 +1,4 @@
+import { API_URL } from './../../service/news.service';
 import { Component, OnInit } from '@angular/core';
 import {routes} from '../../app-routing.module';
 import { NewsService } from '../../service/news.service';
@@ -9,6 +10,7 @@ import { NewsService } from '../../service/news.service';
 })
 export class MenuComponent implements OnInit {
   routes = Object.values(routes);
+  API_URL = Object.values(API_URL);
   listCategory = [];
   gutter = 16;
 count =  0;
@@ -51,11 +53,10 @@ count =  0;
   }
 
   getAllCategory(){
-  this.newService.getAllCategory()
+  this.newService.getAllCategory(API_URL.API_NEWS_GROUP.getListCategory)
   .then(data => {
     this.listCategory = data.data;
     this.count = this.listCategory.length;
-    console.log(data.data);
   })
   .catch(err => console.log(err));
   

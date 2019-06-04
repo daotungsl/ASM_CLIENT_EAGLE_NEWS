@@ -7,7 +7,7 @@
 <div nz-row>
   <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" >
       <ng-container *ngFor="let menu of listCategory">
-        <li style="width: auto"  nz-menu-item [routerLink]="['/news' +  menu.category_url]">
+        <li style="width: auto"  nz-menu-item [routerLink]="['/' + routes[0].path,  menu.category_url]">
           {{menu.name}}
         </li>
       </ng-container>

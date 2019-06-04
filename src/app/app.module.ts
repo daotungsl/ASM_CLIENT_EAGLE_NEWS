@@ -26,7 +26,7 @@ registerLocaleData(vi);
     declarations: [
         AppComponent,
         MenuComponent,
-        FooterComponent
+        FooterComponent,
     ],
     imports: [
         SharedModule,
