@@ -18,7 +18,7 @@ export const routes = {
                 }
             },
             {
-                path: 'detail/:url',
+                path: ':urlCategory/:url',
                 component: DetailNewsComponent,
                 data: {
                     name: 'Chi tiết',

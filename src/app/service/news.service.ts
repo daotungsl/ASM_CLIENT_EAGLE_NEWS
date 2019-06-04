@@ -1,20 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import  'rxjs/add/operator/toPromise';
+import { Router, NavigationEnd } from '@angular/router';
 
+export const API_URL = {
+  API_NEWS_GROUP:{
+    getAll:'http://nalvnsmartnews.herokuapp.com/api/news',
+    getListCategory: 'http://nalvnsmartnews.herokuapp.com/api/category',
+    getByCategory:'http://nalvnsmartnews.herokuapp.com/api/category/news'
+
+  }
+}
 
 @Injectable()
 
 export class NewsService{
-    constructor(private http: Http){}
+    constructor(
+    private router: Router,
+      private http: Http){}
 
-
-    getAllData(API_URL : string){
-        return this.http.get(API_URL)
-                .toPromise()
-                .then(res => res.json())
-                .then(resJson => resJson);
+    goTop(){
+      this.router.events.subscribe((evt) => {
+        if (!(evt instanceof NavigationEnd)) {
+            return;
+        }
+        window.scrollTo(0, 0)
+    });
     }
+
+
     getData(API_URL: string){
       return this.http.get(API_URL)
       .toPromise()
@@ -22,8 +36,8 @@ export class NewsService{
       .then(resJson => resJson)
     }
 
-    getAllCategory(){
-      return  this.http.get('https://nalvnsmartnews.herokuapp.com/api/category')
+    getAllCategory(API_URL: string){
+      return  this.http.get(API_URL)
         .toPromise()
         .then(res => res.json())
         .then(resJson => resJson);

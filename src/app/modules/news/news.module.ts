@@ -15,7 +15,8 @@ import { TopSubListNewsComponent } from './list-news/top-sub-list-news.component
         DetailNewsComponent, 
         DetailListNewsComponent,
         TopListNewsComponent,
-        TopSubListNewsComponent
+        TopSubListNewsComponent,
+
     ],
     imports: [
         SharedModule,
