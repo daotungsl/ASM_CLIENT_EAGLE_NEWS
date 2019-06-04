@@ -1,0 +1,19 @@
+<div nz-row>
+  <div class="logo">
+    <a href="/"><img width="200" alt="Eagle News" src="../../../assets/img/eaglenewlogo.png"></a>
+  </div>
+</div>
+
+<div nz-row>
+  <ul nz-menu [nzTheme]="'dark'" [nzMode]="'horizontal'" style="line-height: 64px;">
+    <ng-container *ngFor="let group of routes">
+      <ng-container *ngFor="let child of group.children">
+        <li *ngIf="child.data.display" nz-menu-item [routerLink]="['/' + group.path, child.path]">
+          {{child.data.name}}
+        </li>
+      </ng-container>
+
+    </ng-container>
+
+  </ul>
+</div>

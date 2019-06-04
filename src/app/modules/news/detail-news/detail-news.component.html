@@ -1,0 +1,5 @@
+        <h1>{{newTitle}}</h1>
+        <h3>{{newDescription}}</h3>
+        <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(newContent)"></div>
+
+       
