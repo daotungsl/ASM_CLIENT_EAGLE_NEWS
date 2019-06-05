@@ -14,12 +14,14 @@ const count = 10;
 })
 
 export class ListNewsComponent implements OnInit {
-  title = 'Eagle News';
   datas = [];
   topData = [];
   topSubData = [];
   middleData = [];
   urlCategory = '';
+  listCategory = [];
+  categoryId : any;
+  titleNews = 'Eagle News';
   nextPage = '';
   loadingMore = false;
   API_URL = Object.values(API_URL);
@@ -31,11 +33,12 @@ export class ListNewsComponent implements OnInit {
     private route: ActivatedRoute,
     private newService: NewsService,
     private titleService: Title) {
-    this.titleService.setTitle(this.title);
+
   }
 
   //Tự động gọi lên api khi mở web
   ngOnInit() {
+    this.getCategory();
     this.route.paramMap.subscribe((params: ParamMap) => {
       this.urlCategory = params.get('url');
       if (this.urlCategory == null) {
@@ -43,28 +46,61 @@ export class ListNewsComponent implements OnInit {
       } else {
         this.getAllData(API_URL.API_NEWS_GROUP.getByCategory + "/" + this.urlCategory);
       }
-      this.newService.goTop();
     })
+    this.newService.goTop();
+    console.log(this.categoryId)
+    
+
   }
 
   //hàm get data
-  getAllData(API_URL: string) {
-    this.newService.getData(API_URL)
+ async getAllData(API_URL: string) {
+    this.topSubData = [];
+   await this.newService.getData(API_URL)
       .then(data => {
         this.datas = data.data.data;
         this.nextPage = data.data.next_page_url;
-        this.title = data.data.data.category_name;
+        this.categoryId = data.data.data[0].category_id;
+    console.log(this.categoryId);
+    if(this.categoryId != null){
+      this.titleNews = this.listCategory[this.categoryId-1].name +' - Eagle News'
+    }
+    this.titleService.setTitle(this.titleNews);
         [this.topData, ...this.middleData] = this.datas;
+        this.getNewsSubTop();
         this.loadingMore = true;
 
       })
       .catch(err => console.log(err));
   }
 
-  onLoadMore() {
+ async  getCategory(){
+  await  this.newService.getAllCategory(API_URL.API_NEWS_GROUP.getListCategory)
+    .then(data => {
+      this.listCategory = data.data;
+    })
+  }
+
+  getNewsSubTop() {
+    while (this.topSubData.length < 5) {
+      var rand = this.middleData[Math.floor(Math.random() * this.middleData.length)];
+      this.topSubData = [...this.topSubData, rand];
+      // this.topSubData.forEach(e => {
+      //   if (e.id == rand.id) {
+      //     this.topSubData = this.arrayRemove(this.topSubData,e)
+      //   }
+      // });
+    }
+
+
+
+
+  }
+
+ async onLoadMore() {
     this.loadingMore = false;
     this.list = this.middleData.concat([...Array(count)]).fill({}).map(() => ({ loading: true, name: {} }));
-    this.newService.getData(this.nextPage)
+   await this.newService.getData(this.nextPage)
       .then(data => {
         this.middleData = this.middleData.concat(data.data.data);
         this.nextPage = data.data.next_page_url;
@@ -73,5 +109,11 @@ export class ListNewsComponent implements OnInit {
 
       })
       .catch(err => console.log(err));
+  }
+
+  arrayRemove(arr: any[], value: any) {
+    return arr.filter(function (ele) {
+      return ele != value;
+    });
   }
 }

@@ -22,7 +22,8 @@ export class DetailNewsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private newService: NewsService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    private titleService: Title
   ) { }
 
   ngOnInit() {
@@ -46,6 +47,8 @@ export class DetailNewsComponent implements OnInit {
         this.newDescription = data.data[0].description
         this.newContent = data.data[0].content
         this.newUrl = data.data[0].url
+        this.titleService.setTitle(this.newTitle);
+
       })
       .catch(err => console.log(err));
   }
