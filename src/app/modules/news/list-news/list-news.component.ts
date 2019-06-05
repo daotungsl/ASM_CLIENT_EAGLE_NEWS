@@ -20,7 +20,7 @@ export class ListNewsComponent implements OnInit {
   middleData = [];
   urlCategory = '';
   listCategory = [];
-  categoryId : any;
+  categoryId: any;
   titleNews = 'Eagle News';
   nextPage = '';
   loadingMore = false;
@@ -48,24 +48,23 @@ export class ListNewsComponent implements OnInit {
       }
     })
     this.newService.goTop();
-    console.log(this.categoryId)
-    
+
 
   }
 
   //hàm get data
- async getAllData(API_URL: string) {
+  async getAllData(API_URL: string) {
     this.topSubData = [];
-   await this.newService.getData(API_URL)
+    await this.newService.getData(API_URL)
       .then(data => {
         this.datas = data.data.data;
         this.nextPage = data.data.next_page_url;
         this.categoryId = data.data.data[0].category_id;
-    console.log(this.categoryId);
-    if(this.categoryId != null){
-      this.titleNews = this.listCategory[this.categoryId-1].name +' - Eagle News'
-    }
-    this.titleService.setTitle(this.titleNews);
+
+        if (this.categoryId != null) {
+          this.titleNews = this.listCategory[this.categoryId - 1].name + ' - Eagle News'
+        }
+        this.titleService.setTitle(this.titleNews);
         [this.topData, ...this.middleData] = this.datas;
         this.getNewsSubTop();
         this.loadingMore = true;
@@ -74,11 +73,11 @@ export class ListNewsComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
- async  getCategory(){
-  await  this.newService.getAllCategory(API_URL.API_NEWS_GROUP.getListCategory)
-    .then(data => {
-      this.listCategory = data.data;
-    })
+  async  getCategory() {
+    await this.newService.getAllCategory(API_URL.API_NEWS_GROUP.getListCategory)
+      .then(data => {
+        this.listCategory = data.data;
+      })
   }
 
   getNewsSubTop() {
@@ -91,16 +90,12 @@ export class ListNewsComponent implements OnInit {
       //   }
       // });
     }
-
-
-
-
   }
 
- async onLoadMore() {
+  async onLoadMore() {
     this.loadingMore = false;
     this.list = this.middleData.concat([...Array(count)]).fill({}).map(() => ({ loading: true, name: {} }));
-   await this.newService.getData(this.nextPage)
+    await this.newService.getData(this.nextPage)
       .then(data => {
         this.middleData = this.middleData.concat(data.data.data);
         this.nextPage = data.data.next_page_url;
@@ -116,4 +111,8 @@ export class ListNewsComponent implements OnInit {
       return ele != value;
     });
   }
+
+  getUrlCategory(data : any){
+    return this.listCategory[data.category_id-1].category_url;
+    }
 }
