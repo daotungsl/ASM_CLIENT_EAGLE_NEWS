@@ -74,7 +74,7 @@ export class ListNewsComponent implements OnInit {
   }
 
   async  getCategory() {
-    await this.newService.getAllCategory(API_URL.API_NEWS_GROUP.getListCategory)
+    await this.newService.getData(API_URL.API_NEWS_GROUP.getListCategory)
       .then(data => {
         this.listCategory = data.data;
       })
@@ -89,6 +89,7 @@ export class ListNewsComponent implements OnInit {
       //     this.topSubData = this.arrayRemove(this.topSubData,e)
       //   }
       // });
+      
     }
   }
 

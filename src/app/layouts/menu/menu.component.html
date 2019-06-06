@@ -1,17 +1,26 @@
 <div nz-row>
-  <div class="logo">
+  <div nz-col nzSpan="8" class="logo">
     <a href="/"><img width="200" alt="Eagle News" src="../../../assets/img/eaglenewlogo.png"></a>
+  </div>
+  <div nz-col nzSpan="8" nzOffset="8" class="weather">
+
+    <h2 style="font-style: italic; font-weight: bold">Hà Nội</h2>
+    <img src="{{infoWeather.urlWeatherIcon}}" alt="{{infoWeather.text}}">
+    <h1>{{infoWeather.temp.metric.value}}°{{infoWeather.temp.metric.unit}} / {{infoWeather.temp.imperial.value}}°{{infoWeather.temp.imperial.unit}}</h1>
+
   </div>
 </div>
 
 <div nz-row>
-  <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'" >
-      <ng-container *ngFor="let menu of listCategory">
-        <li style="width: auto"  nz-menu-item [routerLink]="['/' + routes[0].path,  menu.category_url]">
-          {{menu.name}}
-        </li>
-      </ng-container>
+  <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'">
+    <ng-container *ngFor="let menu of listCategory">
+      <li  nz-menu-item [routerLink]="['/' + routes[0].path,  menu.category_url]">
+        {{menu.name}}
+      </li>
+    </ng-container>
 
 
   </ul>
 </div>
+
+  

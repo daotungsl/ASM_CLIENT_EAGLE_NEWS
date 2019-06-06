@@ -53,7 +53,7 @@ export class DetailNewsComponent implements OnInit {
       .catch(err => console.log(err));
   }
   getNewsByCategory(API_URL_CATEGORY: string){
-    this.newService.getAllCategory(API_URL_CATEGORY)
+    this.newService.getData(API_URL_CATEGORY)
     .then(data => {
       this.datas = data.data.data;
       this.datas.forEach(e => {
