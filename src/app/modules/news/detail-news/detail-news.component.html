@@ -1,0 +1,32 @@
+<div nz-row>
+        <h1>{{newTitle}}</h1>
+        <h3>{{newDescription}}</h3>
+        <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(newContent)"></div>
+
+</div>
+<div nz-row>
+        <h2>Tin cùng chuyên mục:</h2>
+        <div nz-col nzSpan="14">
+
+
+                <ng-container *ngFor="let data of datas">
+                        <app-detail-list-news>
+                                <a class="card-title"  routerLink="/news/{{urlCategory}}/{{data.url}}">
+                                        <h3>{{ data.title }}</h3>
+                                </a>
+                                <a class="card-image" routerLink="/news/{{urlCategory}}/{{data.url}}"><img width="80%"
+                                                src="{{ data.img }}"> </a>
+                                <p class="card-description">{{ data.description }}</p>
+                                <span class="card-author">{{ data.category_name }}</span>
+                        </app-detail-list-news>
+
+                        <!-- <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(data.content)"></div> -->
+                </ng-container>
+
+               
+
+        </div>
+        <div nz-col nzSpan="10">
+                sub new 2
+        </div>
+</div>

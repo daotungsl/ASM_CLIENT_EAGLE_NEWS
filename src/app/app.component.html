@@ -1,0 +1,28 @@
+<div nz-row>
+  <!-- <div style="background-color: black" nz-col nzSpan="0" nzXl="3">
+    Quảng cáo
+  </div> -->
+  <div nz-row nzType="flex" nzJustify="center" nzAlign="top">
+    <div nz-col nzSpan="24" nzXl="18">
+      <nz-layout class="layout">
+        <nz-header>
+          <app-menu></app-menu>
+        </nz-header>
+        <nz-content>
+
+          <div style="background:#fff;">
+
+            <router-outlet></router-outlet>
+          </div>
+        </nz-content>
+        <app-footer></app-footer>
+      </nz-layout>
+    </div>
+    <!-- <div style="background-color: black" nz-col nzSpan="0" nzXl="3">
+      Quảng cáo
+    </div> -->
+  </div>
+
+  <button class="go-top" *ngIf="isShow" (click)="gotoTop()"><img width=50px height=50px
+      src="../assets/img/UpTop.png"></button>
+</div>

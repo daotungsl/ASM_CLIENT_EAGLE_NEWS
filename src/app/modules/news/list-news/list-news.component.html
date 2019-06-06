@@ -1,0 +1,55 @@
+<div nz-row class="top-news" *ngIf="loadingMore">
+  <div nz-col nzSpan="16">
+    <app-top-list-news>
+      <a class="card-title" routerLink="/news/{{getUrlCategory(topData)}}/{{ topData.url }}">
+        <h2>{{topData.title}}</h2>
+      </a>
+      <a class="card-image" routerLink="/news/{{getUrlCategory(topData)}}/{{ topData.url }}"><img width="100%" src="{{ topData.img }}"> </a>
+      <p class="card-description">{{ topData.description }}</p>
+      <span class="card-author">{{ topData.category_name }}</span>
+    </app-top-list-news>
+  </div>
+  <div nz-col nzSpan="8" class="top-news-sub">
+   
+      <ng-container *ngFor="let data of topSubData">
+        <app-top-sub-list-news>
+          <a class="card-title" routerLink="/news/{{getUrlCategory(data)}}/{{data.url}}">
+            <h3>{{ data.title }}</h3>
+          </a>
+          <p class="card-description">{{ data.description }}</p>
+          <span class="card-author">{{ data.category_name }}</span>
+        </app-top-sub-list-news>
+
+        <!-- <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(data.content)"></div> -->
+      </ng-container>
+    
+  </div>
+</div>
+
+<div nz-row >
+  <div nz-col nzSpan="14">
+
+     
+    <ng-container *ngFor="let data of middleData">
+      <app-detail-list-news>
+        <a class="card-title" routerLink="/news/{{getUrlCategory(data)}}/{{data.url}}">
+          <h3>{{ data.title }}</h3>
+        </a>
+        <a class="card-image" routerLink="/news/{{getUrlCategory(data)}}/{{data.url}}"><img width="80%" src="{{ data.img }}"> </a>
+        <p class="card-description">{{ data.description }}</p>
+        <span class="card-author">{{ data.category_name }}</span>
+      </app-detail-list-news>
+
+      <!-- <div [innerHtml]="sanitizer.bypassSecurityTrustHtml(data.content)"></div> -->
+    </ng-container>
+
+    <div class="loadmore">
+      <img width=6% *ngIf="!loadingMore" src="../../../../assets/img/loading-indicator.gif">
+      <button nz-button *ngIf="loadingMore" (click)="onLoadMore()">loading more</button>
+    </div>
+
+  </div>
+  <div nz-col nzSpan="10">
+    sub new 2
+  </div>
+</div>
