@@ -43,10 +43,10 @@ export class DetailNewsComponent implements OnInit {
   getNew(API_URL_NEW: string) {
     this.newService.getData(API_URL_NEW)
       .then(data => {
-        this.newTitle = data.data[0].title
-        this.newDescription = data.data[0].description
-        this.newContent = data.data[0].content
-        this.newUrl = data.data[0].url
+        this.newTitle = data[0].title
+        this.newDescription = data[0].description
+        this.newContent = data[0].content
+        this.newUrl = data[0].url
         this.titleService.setTitle(this.newTitle);
 
       })
@@ -55,7 +55,7 @@ export class DetailNewsComponent implements OnInit {
   getNewsByCategory(API_URL_CATEGORY: string){
     this.newService.getData(API_URL_CATEGORY)
     .then(data => {
-      this.datas = data.data.data;
+      this.datas = data;
       this.datas.forEach(e => {
         if(e.url == this.newUrl){
         

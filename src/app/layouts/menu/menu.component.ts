@@ -73,7 +73,7 @@ export class MenuComponent implements OnInit {
   getAllCategory() {
     this.newService.getData(API_URL.API_NEWS_GROUP.getListCategory)
       .then(data => {
-        this.listCategory = data.data;
+        this.listCategory = data;
         this.count = this.listCategory.length;
       })
       .catch(err => console.log(err));

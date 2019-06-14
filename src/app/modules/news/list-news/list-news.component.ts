@@ -20,7 +20,7 @@ export class ListNewsComponent implements OnInit {
   middleData = [];
   urlCategory = '';
   listCategory = [];
-  categoryId: any;
+  url_category: any;
   titleNews = 'Eagle News';
   nextPage = '';
   loadingMore = false;
@@ -45,24 +45,28 @@ export class ListNewsComponent implements OnInit {
         this.getAllData(API_URL.API_NEWS_GROUP.getAll);
       } else {
         this.getAllData(API_URL.API_NEWS_GROUP.getByCategory + "/" + this.urlCategory);
+        console.log(this.urlCategory)
       }
     })
+    console.log(this.topData);
     this.newService.goTop();
 
 
   }
 
   //hàm get data
-  async getAllData(API_URL: string) {
+   getAllData(API_URL: string) {
     this.topSubData = [];
-    await this.newService.getData(API_URL)
+     this.newService.getData(API_URL)
       .then(data => {
-        this.datas = data.data.data;
-        this.nextPage = data.data.next_page_url;
-        this.categoryId = data.data.data[0].category_id;
+        this.datas = data;
+        
+        // this.nextPage = data.data.next_page_url;
+        // this.categoryId = data.data.data[0].category_id;
+        console.log(this.urlCategory)
 
-        if (this.categoryId != null) {
-          this.titleNews = this.listCategory[this.categoryId - 1].name + ' - Eagle News'
+        if (this.url_category != null) {
+          this.titleNews = this.listCategory[1].category + ' - Eagle News'
         }
         this.titleService.setTitle(this.titleNews);
         [this.topData, ...this.middleData] = this.datas;
@@ -73,10 +77,11 @@ export class ListNewsComponent implements OnInit {
       .catch(err => console.log(err));
   }
 
-  async  getCategory() {
-    await this.newService.getData(API_URL.API_NEWS_GROUP.getListCategory)
+    getCategory() {
+     this.newService.getData(API_URL.API_NEWS_GROUP.getListCategory)
       .then(data => {
-        this.listCategory = data.data;
+        this.listCategory = data;
+        console.log(this.listCategory)
       })
   }
 
@@ -113,7 +118,5 @@ export class ListNewsComponent implements OnInit {
     });
   }
 
-  getUrlCategory(data : any){
-    return this.listCategory[data.category_id-1].category_url;
-    }
+
 }

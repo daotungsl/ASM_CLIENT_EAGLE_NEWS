@@ -3,11 +3,16 @@ import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Router, NavigationEnd } from '@angular/router';
 
+  // API_NEWS_GROUP: {
+  //   getAll: 'http://nalvnsmartnews.herokuapp.com/api/news',
+  //   getListCategory: 'http://nalvnsmartnews.herokuapp.com/api/category',
+  //   getByCategory: 'http://nalvnsmartnews.herokuapp.com/api/category/news'
+  // },
 export const API_URL = {
   API_NEWS_GROUP: {
-    getAll: 'http://nalvnsmartnews.herokuapp.com/api/news',
-    getListCategory: 'http://nalvnsmartnews.herokuapp.com/api/category',
-    getByCategory: 'http://nalvnsmartnews.herokuapp.com/api/category/news'
+    getAll: 'https://1-dot-testdemo-241903.appspot.com/api/article',
+    getListCategory: 'https://1-dot-testdemo-241903.appspot.com/api/categories',
+    getByCategory: 'https://1-dot-testdemo-241903.appspot.com/api/categories'
   },
   API_WEATHER_GROUP: {
     getNow:'http://dataservice.accuweather.com/currentconditions/v1/353412?apikey=xOzWbj7lZOeypTfUWyXZ3C11GAg8Dle1&language=vi-vn',

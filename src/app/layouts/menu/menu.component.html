@@ -14,8 +14,8 @@
 <div nz-row>
   <ul nz-menu [nzTheme]="'light'" [nzMode]="'horizontal'">
     <ng-container *ngFor="let menu of listCategory">
-      <li  nz-menu-item [routerLink]="['/' + routes[0].path,  menu.category_url]">
-        {{menu.name}}
+      <li  nz-menu-item [routerLink]="['/' + routes[0].path,  menu.url_category]">
+        {{menu.category}}
       </li>
     </ng-container>
 
