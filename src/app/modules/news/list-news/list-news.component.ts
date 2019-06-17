@@ -15,7 +15,7 @@ const count = 10;
 
 export class ListNewsComponent implements OnInit {
   datas = [];
-  topData = [];
+  topData : any;
   topSubData = [];
   middleData = [];
   urlCategory = '';
@@ -54,7 +54,6 @@ export class ListNewsComponent implements OnInit {
 
   //hàm get data
   async getAllData(API_URL: string) {
-    this.topSubData = [];
     await this.newService.getData(API_URL)
       .then(data => {
         this.datas = data.data.data;

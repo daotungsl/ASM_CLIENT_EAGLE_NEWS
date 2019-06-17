@@ -1,5 +1,6 @@
 <div nz-row class="top-news" *ngIf="loadingMore">
   <div nz-col nzSpan="16">
+    
     <app-top-list-news>
       <a class="card-title" routerLink="/news/{{getUrlCategory(topData)}}/{{ topData.url }}">
         <h2>{{topData.title}}</h2>
